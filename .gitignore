@@ -47,3 +47,6 @@ android/gradle/wrapper/gradle-wrapper.properties
 
 # built files
 lib
+android/java_pid48256.hprof
+
+Example/android/app/google-services.json

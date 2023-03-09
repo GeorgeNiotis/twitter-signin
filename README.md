@@ -8,12 +8,18 @@ Note: this guide is for TwitterKit 5 and ReactNative 0.60+.
 This package provides necessary code to get your social sign in using Twitter works with least pain possible.
 
 ## Table of contents
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Todo](#todo)
-- [Copyright and license](#copyright-and-license)
-- [Inspiration](#inspiration)
+- [React Native : Twitter Signin](#react-native--twitter-signin)
+  - [Table of contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+    - [iOS](#ios)
+      - [With CocoaPods](#with-cocoapods)
+      - [Manually](#manually)
+    - [Android](#android)
+  - [Usage](#usage)
+  - [Todo](#todo)
+  - [Copyright and license](#copyright-and-license)
+  - [Inspiration](#inspiration)
 
 ## Prerequisites
 
@@ -90,6 +96,62 @@ Firstly, install the npm package:
 ### Android
 
 For React Native 0.60+, no additional setup is required for android.
+but you need to make sure that the `build.gradle` on android app has a similar layout
+```
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        buildToolsVersion = "33.0.0"
+        minSdkVersion = 21
+        compileSdkVersion = 33
+        targetSdkVersion = 33
+
+        // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
+        ndkVersion = "23.1.7779620"
+    }
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+        maven { url 'https://www.jitpack.io' }
+        jcenter()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.3.1")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath 'com.google.gms:google-services:4.3.14'
+        
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url("../node_modules/react-native/android")
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("../node_modules/jsc-android/dist")
+        }
+
+        google()
+        maven { url 'https://www.jitpack.io' }
+        jcenter()
+    }
+}
+```
 
 <details>
 <summary>Linking Package Manually (not recommended)</summary>
